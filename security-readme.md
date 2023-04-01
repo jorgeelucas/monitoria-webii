@@ -133,6 +133,8 @@ public class SegurancaConfig {
                     auth.antMatchers("/students").hasRole("ROLE_STUDENT");
                     // espera que todas as chamadas para /students tenham tenham a seja autorizado e tenha a role TEACHER
                     auth.antMatchers("/teachers").hasRole("ROLE_TEACHER");
+                    // qualquer outro request necessita de autenticação
+                    auth.anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
